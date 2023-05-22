@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, type PayloadAction } from "@reduxjs/toolkit";
 import {
   Product,
   ProductCategory,
@@ -23,6 +23,11 @@ const initialState: ProductState = {
   ],
 };
 
+interface ProductUpdatePayload {
+    id: string;
+    product: Product
+}
+
 async function GET_PRODUCT(): Promise<AxiosResponse<Product[], ResponseError>> {
   return await request({
     url: "https://jsonplaceholder.typicode.com/posts",
@@ -40,20 +45,26 @@ const productSliceSlice = createSlice({
   name: sliceName,
   initialState,
   reducers: {
-    create: (state: ProductState, action) => {
+    create: (state: ProductState, action: PayloadAction<Product>) => {
       state.products.push(action.payload);
     },
-    delete: (state: ProductState, action) => {
+    delete: (state: ProductState, action: PayloadAction<Product>) => {
       state.products = state.products.filter(
-        (product) => product.id !== action.id
+        (product) => product.id !== action.payload.id
       );
+    },
+    update: (state: ProductState, action: PayloadAction<ProductUpdatePayload>) => {
+       const foundIndex = state.products.findIndex(product => product.id === action.payload.id);
+       if(foundIndex > -1){
+         state.products[foundIndex] = action.payload.product;
+       }
     },
   },
   extraReducers: (builder) => {
     builder.addCase(queryProduct.pending, (state) => {
       state.isLoading = true;
     });
-    builder.addCase(queryProduct.fulfilled, (state, action) => {
+    builder.addCase(queryProduct.fulfilled, (state, action: PayloadAction<Product[]>) => {
       state.products = action.payload || [];
       state.isLoading = false;
       state.isError = false;
