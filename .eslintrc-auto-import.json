@@ -29,6 +29,13 @@
     "useOutletContext": true,
     "useParams": true,
     "useResolvedPath": true,
-    "useRoutes": true
+    "useRoutes": true,
+    "redux": true,
+    "productAction": true,
+    "productReducer": true,
+    "bundleAction": true,
+    "bundleReducer": true,
+    "productAsyncAction": true,
+    "request": true
   }
 }

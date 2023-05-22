@@ -9,6 +9,11 @@ export interface Product {
   category: ProductCategory;
   isAvailable: boolean;
 }
+export type ProductState = {
+  products: Product[];
+  isLoading: boolean;
+  isError: boolean;
+};
 
 export type ProductStore = Immutable<{
   products: Product[];

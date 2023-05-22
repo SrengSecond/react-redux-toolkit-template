@@ -1,10 +1,10 @@
 import axios from "axios";
 
 // Custom instance of axios.
-const Request = axios.create();
+const request = axios.create();
 
 // Add a request interceptor
-Request.interceptors.request.use(
+request.interceptors.request.use(
   function (config) {
     // Do something before request is sent
     return config;
@@ -16,7 +16,7 @@ Request.interceptors.request.use(
 );
 
 // Add a response interceptor
-Request.interceptors.response.use(
+request.interceptors.response.use(
   function (response) {
     // Any status code that lie within the range of 2xx cause this function to trigger
     // Do something with response data
@@ -28,4 +28,4 @@ Request.interceptors.response.use(
     return Promise.reject(error);
   }
 );
-export default Request;
+export default request;

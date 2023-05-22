@@ -17,6 +17,11 @@ export default defineConfig({
     react(),
     AutoImport({
       dts: true,
+      dirs: [
+        "./src/redux/**/*.{ts,tsx}",
+        "./src/redux/*.{ts,tsx}",
+        "./src/request/*.{ts,tsx}",
+      ],
       imports: ["react", "react-router"],
       eslintrc: {
         enabled: true,
