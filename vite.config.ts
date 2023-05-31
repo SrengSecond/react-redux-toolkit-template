@@ -21,6 +21,7 @@ export default defineConfig({
         "./src/redux/**/*.{ts,tsx}",
         "./src/redux/*.{ts,tsx}",
         "./src/request/*.{ts,tsx}",
+        "./src/hooks",
       ],
       imports: ["react", "react-router"],
       eslintrc: {

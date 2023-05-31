@@ -36,6 +36,9 @@
     "bundleAction": true,
     "bundleReducer": true,
     "productAsyncAction": true,
-    "request": true
+    "request": true,
+    "useAppDispatch": true,
+    "useAppSelector": true,
+    "useRedux": true
   }
 }
